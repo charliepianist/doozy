@@ -1,0 +1,12 @@
+<div class="container slate-background" style="height: 85%">
+  <div>Chat room with <b>{{ receiver.firstName }} {{ receiver.lastName }}</b></div>
+  <div *ngFor="let msg of messages" style="text-align: left">
+    {{ msg }}
+  </div>
+  <div>
+    <form (ngSubmit)="sendMessage()">
+      <input [(ngModel)]="message" type="text" name="message" style="width:20em;">
+      <input type="submit">
+    </form>
+  </div>
+</div>

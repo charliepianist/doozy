@@ -1,0 +1,22 @@
+span {
+  cursor: pointer;
+}
+.title {
+  font-size: 4em;
+  font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+}
+div {
+  display:inline;
+  margin-left: 0px;
+  margin-right: 0px;
+  box-sizing: border-box;
+}
+.float-right {
+  float: right;
+}
+.side {
+  width: 45%;
+}
+.middle {
+  width: 10%;
+}

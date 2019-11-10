@@ -1,0 +1,14 @@
+<div class="hero">
+  <div class="top">&nbsp;</div>
+    <div class="centered">
+      <h1>Come for viewpoints.<br>Stay for friends.</h1>
+      <ng-container *ngIf="!(name !== null && name !== ''); else loggedIn;">
+        <button [routerLink]="['/login']" mdbBtn type="button" color="default" mdbWavesEffect>Login</button>
+        <button [routerLink]="['/register']" mdbBtn type="button" color="default" mdbWavesEffect>Register</button>
+      </ng-container>
+      <ng-template #loggedIn>
+        <button mdbBtn type="button" color="default" mdbWavesEffect>Already Logged In</button>
+      </ng-template>
+    </div>
+    <div class="bottom">&nbsp;</div>
+</div>

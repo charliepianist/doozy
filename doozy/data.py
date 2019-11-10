@@ -237,7 +237,7 @@ def get_interests_issues(db, table, user_id):
 
 def request_chat(db, user_id):
 
-    sigDiffThreshold = 6
+    sigDiffThreshold = 4
 
     query = "SELECT * FROM open_users WHERE user_id != '{0}';".format(user_id)
     cursor = db.cursor()

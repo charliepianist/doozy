@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+button.btn {
+  border-radius: 0.6em;
+  font-size: 1em;
+  padding: 0.75em 1.5em;
+}
+.centered {
+  height: 40%;
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  vertical-align: middle;
+}
+.slate-background {
+  background-color: whitesmoke;
+  border-radius: 1em;
+  text-align: center;
+}

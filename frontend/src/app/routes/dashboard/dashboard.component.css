@@ -1,0 +1,10 @@
+.chatRoomEntry {
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+  border: 2px lightgray ridge;
+  border-radius: 1em;
+}
+.hoverHighlight:hover {
+  background-color: lightskyblue;
+  cursor: pointer;
+}

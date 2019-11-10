@@ -1,0 +1,21 @@
+<div class="container slate-background">
+    <br>
+    <button *ngIf="searchStatus === 0" (click)="findNewMatch()" mdbBtn type="button" color="primary" mdbWavesEffect>Find New Match</button>
+    <ng-container *ngIf="searchStatus === 1">
+        <button mdbBtn type="button" color="danger" mdbWavesEffect>Match not found</button><br>
+        (Reload to try again)
+    </ng-container>
+    <ng-container *ngIf="searchStatus === 2">
+        <button mdbBtn type="button" color="primary" mdbWavesEffect>Match found! :)</button><br>
+        (See below)
+    </ng-container>
+    <br><br>
+    <ng-container *ngFor="let chatRoom of chatRooms; let i = index;">
+      <div class="chatRoomEntry hoverHighlight" [routerLink]="['/chat/' + chatRoom.user.userId]">
+        <b>{{ chatRoom.user.firstName }} {{ chatRoom.user.lastName }}</b><br>
+        You share interests in...<br>
+        <span class="hobbies">{{ chatRoom.listSharedHobbies() }}</span>
+      </div>
+      <br>
+    </ng-container>
+</div>

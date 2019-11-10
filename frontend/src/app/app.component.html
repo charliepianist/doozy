@@ -1,0 +1,16 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center;">
+  <div class="side" style="float:left;">&nbsp;</div>
+  <div class="middle">
+    <span [routerLink]="['/home']" class="title">{{ title }}</span>
+  </div>
+  <div class="side">
+    <div class="float-right" style="padding-right: 1em;">
+      <div style="display:block; margin-top: 0.5em;">&nbsp;{{ name }}&nbsp;</div>
+      <div style="display: block;"><a *ngIf="name !== null && name !== ''" [routerLink]="['/dashboard']">Dashboard</a></div>
+      <div style="display: block;"><a *ngIf="name !== null && name !== ''" [routerLink]="['/logout']">Logout</a></div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

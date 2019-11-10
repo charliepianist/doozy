@@ -1,0 +1,65 @@
+<div class="container" style="width: 50%">
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input type="text" class="form-control" id="firstName"
+          required
+          [(ngModel)]="firstName" name="firstName">
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input type="text" class="form-control" id="lastName"
+          required
+          [(ngModel)]="lastName" name="lastName">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email"
+          required
+          [(ngModel)]="email" name="email">
+  </div>
+
+    <div class="form-group">
+      <label for="hobbies">Hobbies</label> (pick up to 6)<br>
+      <ng-container *ngFor="let hobby of hobbyList; let i = index">
+        <button *ngIf="hobbies[i]; else outline" mdbBtn (click)="toggleButton(i)" type="button" color="default" mdbWavesEffect>{{ hobby }}</button>
+        <ng-template #outline>
+            <button mdbBtn (click)="toggleButton(i)" type="button" color="default" outline="true" mdbWavesEffect>{{ hobby }}</button>
+        </ng-template>
+      </ng-container>
+    </div>
+
+    <div class="form-group">
+      <label for="opinions">Opinions</label><br><br>
+      <ng-container *ngFor="let opinion of opinionList; let i = index">
+          <div style="margin-bottom: 0.2em;"><b>{{ opinion }}</b></div>
+          <div style="float:left; margin-bottom:0.4em;">Strongly Disagree</div>
+          <div style="float:right; margin-bottom:0.4em;">Strongly Agree</div>
+          <input min="0" max="10" step="1" type="range" [(ngModel)]="opinions[i]" list="tickmarks">
+          <br>
+      </ng-container>
+    </div>
+
+    <datalist id="tickmarks">
+      <option value="0" label="0"></option>
+      <option value="1"></option>
+      <option value="2"></option>
+      <option value="3"></option>
+      <option value="4"></option>
+      <option value="5" label="5"></option>
+      <option value="6"></option>
+      <option value="7"></option>
+      <option value="8"></option>
+      <option value="9"></option>
+      <option value="10" label="10"></option>
+    </datalist>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password"  class="form-control" id="password"
+            [(ngModel)]="password" name="password">
+    </div>
+
+    <button (click)="register()" mdbBtn type="button" color="default" mdbWavesEffect id="register-button">Register</button><br>
+  </div>
