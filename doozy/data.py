@@ -263,14 +263,17 @@ def request_chat(db, user_id):
 
     largest_diff = 0
     other_id = None
+    shared = None
     for i in range(len(interest_lists)):
-        shared_interests = len(set(caller_id_interests) & set(interest_lists[i]))
+        shared_interests = set(caller_id_interests) & set(interest_lists[i])
+        shared_interests_count = len(shared_interests)
 
         stance_diff = list(map(operator.sub, issue_lists[i], caller_id_issues))
         stance_diff_total = sum(map(operator.abs, stance_diff))
         sigDiff = max(abs(max(issue_lists[i]) - min(caller_id_issues)), abs(min(issue_lists[i]) - max(caller_id_issues)))
-        if stance_diff_total > largest_diff and sigDiff > sigDiffThreshold and shared_interests >= 1:
+        if stance_diff_total > largest_diff and sigDiff > sigDiffThreshold and shared_interests_count >= 1:
             largest_diff = stance_diff_total
+            shared = list(shared_interests)
             other_id = available_user_ids[i]
 
     if not other_id:
@@ -291,7 +294,28 @@ def request_chat(db, user_id):
     cursor.execute(query)
     cursor.close()
 
-    return { "result": True, "user": { "userId": other_user_id, "firstName": other_first_name, "lastName": other_last_name, "email": other_email, "password": other_password}}
+    shared_interests_names = []
+    for si in shared_interests:
+        query = "SELECT interest_name FROM interests WHERE interest_id = '{0}';".format(str(si))
+        cursor = db.cursor()
+        cursor.execute(query)
+        name_si = cursor.fetchall()[0][0]
+        cursor.close()
+        shared_interests_names.append(name_si)
+
+    shared_interests_list = [str(i) for i in shared_interests]
+    shared_interests_length = len(shared_interests_list)
+    for i in range(shared_interests_length, max_interest_count):
+        shared_interests_list.append('Default')
+    shared_interests_string = ', '.join(shared_interests_list)
+    match_string = "'{0}', '{1}', {2}".format(user_id, other_user_id, shared_interests_string)
+
+    query = "INSERT INTO matches VALUES ({0});".format(match_string)
+    cursor = db.cursor()
+    cursor.execute(query)
+    cursor.close()
+
+    return { "result": True, "user": { "userId": other_user_id, "firstName": other_first_name, "lastName": other_last_name, "email": other_email, "password": other_password}, "sharedInterests": shared_interests_names}
 
 def generate_users(db, table, user_count):
 

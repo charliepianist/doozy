@@ -64,3 +64,18 @@ CREATE TABLE `open_users` (
   KEY `FK_user_id_open` (`user_id`),
   CONSTRAINT `FK_user_id_open` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE matches (
+  user_id_1 int(11) NOT NULL,
+  user_id_2 int(11) NOT NULL,
+  interest_1 tinyint(4) DEFAULT NULL,
+  interest_2 tinyint(4) DEFAULT NULL,
+  interest_3 tinyint(4) DEFAULT NULL,
+  interest_4 tinyint(4) DEFAULT NULL,
+  interest_5 tinyint(4) DEFAULT NULL,
+  interest_6 tinyint(4) DEFAULT NULL,
+  KEY FK_user_id_1 (user_id_1),
+  KEY FK_user_id_2 (user_id_2),
+  CONSTRAINT FK_user_id_1 FOREIGN KEY (user_id_1) REFERENCES users (user_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT FK_user_id_2 FOREIGN KEY (user_id_2) REFERENCES users (user_id) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
