@@ -328,8 +328,8 @@ def generate_users(db, table, user_count):
 
             insert_user_db(db, email, first_name, last_name, password, interests_formatted, issues_formatted)
 
-            query = "INSERT INTO open_users VALUES (LAST_INSERT_ID(), 1);"
-            cursor = db.cursor()
-            cursor.execute(query)
-            cursor.close()
+            # query = "INSERT INTO open_users VALUES (LAST_INSERT_ID(), 1);"
+            # cursor = db.cursor()
+            # cursor.execute(query)
+            # cursor.close()
             i += 1
